@@ -2,13 +2,13 @@ using TDA.FileIO;
 using TDA.StandardTestData;
 using TDA.Utilities;
 
-namespace Ex401.UseStdfReader
+namespace Ex301.UseRecordReader
 {
     /// <summary>
     /// 演示如何使用显式 Close() 关闭 StdfReader，而非依赖 using 块自动释放。
     /// 适用于需要显式控制文件生命周期（如跨函数传递 reader）的场景。
     /// </summary>
-    public static class Ex40104_HowToCloseRecordReader
+    public static class Ex30102_HowToCloseRecordReader
     {
         /// <summary>
         /// 执行入口，由 Program.Main() 调用。

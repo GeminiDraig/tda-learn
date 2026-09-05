@@ -1,14 +1,14 @@
 using TDA.FileIO;
 using TDA.StandardTestData;
 
-namespace Ex301.RecordReaderBasics
+namespace Ex301.UseRecordReader
 {
     /// <summary>
     /// 演示 RecordReader 构造配置 StdfDecompressionMode（Buffered / Streaming）对压缩 STDF 文件读取行为的影响。
     /// Buffered 全量解压到内存、可随机访问；Streaming 流式边解压边解析、内存占用恒定。
     /// 对普通 .stdf 文件两种模式无差异，建议选择 .gz / .zip / .tar.gz 压缩文件观察差异。
     /// </summary>
-    public static class Ex30102_ConfigurationDemo
+    public static class Ex30105_ConfigurationDemo
     {
         /// <summary>
         /// 执行入口，由 Program.Main() 调用。

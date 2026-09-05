@@ -1,0 +1,63 @@
+{
+  // tda-examples shared debug configuration.
+  // Every example targets net10.0-windows10.0.19041 (see Directory.Build.props),
+  // so the only thing that varies per run is WHICH example to start.
+  // Pick the example below in the F5 dropdown / input prompt, then debug as usual.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Example (pick from list)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-slnx",
+      "program": "${workspaceFolder}/Examples/${input:example}/bin/Debug/net10.0-windows10.0.19041/${input:example}.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Examples/${input:example}",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    },
+    {
+      // CLI-friendly variant: lets you type args (e.g. Ex701 --demo).
+      "name": "Run Example with args",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-slnx",
+      "program": "${workspaceFolder}/Examples/${input:example}/bin/Debug/net10.0-windows10.0.19041/${input:example}.dll",
+      "args": "${input:args}",
+      "cwd": "${workspaceFolder}/Examples/${input:example}",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+  ],
+  "inputs": [
+    {
+      "id": "example",
+      "type": "pickString",
+      "description": "Which example to run",
+      "options": [
+        "Ex101.UseDataPrism",
+        "Ex102.ExportParamsStatistics",
+        "Ex103.ExportRawData",
+        "Ex105.ExportSummary",
+        "Ex106.ExportPartSummary",
+        "Ex201.UseMsgInConsole",
+        "Ex202.UseMsgInWinform",
+        "Ex203.UseMsgInConsoleAndWinform",
+        "Ex204.CfgFileForDataPrismSetup",
+        "Ex205.CfgFileForTestIDSet",
+        "Ex206.CfgFileForTestIDProfileSet",
+        "Ex301.UseRecordReader",
+        "Ex302.UseRecordWriter",
+        "Ex601.GUICharts",
+        "Ex602.GUIEasyPlotForm",
+        "Ex603.FlexiblePlotForm",
+        "Ex701.LotYieldReport"
+      ]
+    },
+    {
+      "id": "args",
+      "type": "promptString",
+      "description": "Command-line args for the example (e.g. --demo)"
+    }
+  ]
+}

@@ -2,13 +2,13 @@ using TDA.FileIO;
 using TDA.StandardTestData;
 using TDA.Utilities;
 
-namespace Ex401.UseStdfReader
+namespace Ex301.UseRecordReader
 {
     /// <summary>
     /// 使用 StdfReader 逐条读取 STDF 文件，通过 TypeID 将基类 Record 转换为具体子类型后打印。
     /// 演示如何区分不同记录类型以获取各类型的专属数据。
     /// </summary>
-    public static class Ex40103_ReadAndProcessAsSpecificRecord
+    public static class Ex30104_ReadRecordAsSpecificRecordType
     {
         /// <summary>
         /// 执行入口，由 Program.Main() 调用。

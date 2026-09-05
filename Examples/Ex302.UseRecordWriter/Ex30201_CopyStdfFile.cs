@@ -1,37 +1,20 @@
-﻿using TDA.FileIO;
+using TDA.FileIO;
 using TDA.StandardTestData;
 using TDA.Utilities;
 
-namespace Ex501.UseRecordWriter
+namespace Ex302.UseRecordWriter
 {
     /// <summary>
-    /// Ex501：演示使用 RecordReader 逐条读取 STDF 文件，并通过 RecordWriter 写入新文件。
-    /// <para>
-    /// 核心流程：
-    /// <list type="number">
-    ///   <item>弹窗选取源 STDF 文件</item>
-    ///   <item>用 RecordReader 逐条读取所有 Record</item>
-    ///   <item>用 RecordWriter 将每条 Record 写入输出文件</item>
-    ///   <item>输出写入统计摘要</item>
-    /// </list>
-    /// </para>
+    /// 场景1：将源 STDF 文件逐条 Record 拷贝为新文件。
+    /// 用于验证 RecordReader + RecordWriter 的完整读写流程，
+    /// 同时演示如何利用 RecordWriter.RecordCount 获取各类 Record 数量统计。
     /// </summary>
-    internal static class Program
+    public static class Ex30201_CopyStdfFile
     {
-        [STAThread]
-        static void Main()
-        {
-            Ex50101_CopyStdfFile();
-            Console.WriteLine("Job done!");
-            Console.ReadKey();
-        }
-
         /// <summary>
-        /// 场景1：将源 STDF 文件逐条 Record 拷贝为新文件。
-        /// 用于验证 RecordReader + RecordWriter 的完整读写流程，
-        /// 同时演示如何利用 RecordWriter.RecordCount 获取各类 Record 数量统计。
+        /// 执行入口，由 Program.Main() 调用。
         /// </summary>
-        static void Ex50101_CopyStdfFile()
+        public static void Execute()
         {
             // ── Step 1: 弹窗选取源 STDF 文件 ────────────────────────────
             string? srcPath = TDAFileDialog.SelectFile(FileType.stdf);
@@ -48,7 +31,7 @@ namespace Ex501.UseRecordWriter
             }
 
             // ── Step 2: 构建输出文件路径 ─────────────────────────────────
-            string dir     = Path.GetDirectoryName(srcPath) ?? Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string dir      = Path.GetDirectoryName(srcPath) ?? Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string baseName = Path.GetFileNameWithoutExtension(srcPath);
             string ext      = Path.GetExtension(srcPath);
             string dstPath  = Path.Combine(dir, $"{baseName}.copy{ext}");

@@ -310,7 +310,3 @@ __pycache__/
 # OS
 Thumbs.db
 Desktop.ini
-
-# Sync helper output: execution log written by tda-examples-sync.ps1
-# (already covered by *.log above; explicit entry for clarity)
-sync-last.log

@@ -12,9 +12,6 @@
     <Project Path="Examples/Ex204.CfgFileForDataPrismSetup/Ex204.CfgFileForDataPrismSetup.csproj" />
     <Project Path="Examples/Ex205.CfgFileForTestIDSet/Ex205.CfgFileForTestIDSet.csproj" />
     <Project Path="Examples/Ex206.CfgFileForTestIDProfileSet/Ex206.CfgFileForTestIDProfileSet.csproj" />
-    <Project Path="Examples/Ex301.RecordReaderBasics/Ex301.RecordReaderBasics.csproj" />
-    <Project Path="Examples/Ex401.UseStdfReader/Ex401.UseStdfReader.csproj" />
-    <Project Path="Examples/Ex501.UseRecordWriter/Ex501.UseRecordWriter.csproj" />
     <Project Path="Examples/Ex601.GUICharts/Ex601.GUICharts.csproj" />
     <Project Path="Examples/Ex602.GUIEasyPlotForm/Ex602.GUIEasyPlotForm.csproj" />
     <Project Path="Examples/Ex603.FlexiblePlotForm/Ex603.FlexiblePlotForm.csproj" />

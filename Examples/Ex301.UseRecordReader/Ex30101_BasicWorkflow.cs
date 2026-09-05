@@ -1,7 +1,7 @@
 using TDA.FileIO;
 using TDA.StandardTestData;
 
-namespace Ex301.RecordReaderBasics
+namespace Ex301.UseRecordReader
 {
     /// <summary>
     /// 展示 RecordReader 的基本调用流程：选择文件 → 校验 → 初始化 → 读取 FAR 文件头 → 迭代 ReadNext() → 自动释放。
