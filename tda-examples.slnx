@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/Examples/">
+    <File Path="Examples/README.md" />
+    <Project Path="Examples/Ex101.UseDataPrism/Ex101.UseDataPrism.csproj" />
+    <Project Path="Examples/Ex102.ExportParamsStatistics/Ex102.ExportParamsStatistics.csproj" />
+    <Project Path="Examples/Ex103.ExportRawData/Ex103.ExportRawData.csproj" />
+    <Project Path="Examples/Ex105.ExportSummary/Ex105.ExportSummary.csproj" />
+    <Project Path="Examples/Ex106.ExportPartSummary/Ex106.ExportPartSummary.csproj" />
+    <Project Path="Examples/Ex201.UseMsgInConsole/Ex201.UseMsgInConsole.csproj" />
+    <Project Path="Examples/Ex202.UseMsgInWinform/Ex202.UseMsgInWinform.csproj" />
+    <Project Path="Examples/Ex203.UseMsgInConsoleAndWinform/Ex203.UseMsgInConsoleAndWinform.csproj" />
+    <Project Path="Examples/Ex204.CfgFileForDataPrismSetup/Ex204.CfgFileForDataPrismSetup.csproj" />
+    <Project Path="Examples/Ex205.CfgFileForTestIDSet/Ex205.CfgFileForTestIDSet.csproj" />
+    <Project Path="Examples/Ex401.UseStdfReader/Ex401.UseStdfReader.csproj" />
+    <Project Path="Examples/Ex501.UseRecordWriter/Ex501.UseRecordWriter.csproj" />
+    <Project Path="Examples/Ex601.GUICharts/Ex601.GUICharts.csproj" />
+    <Project Path="Examples/Ex602.GUIEasyPlotForm/Ex602.GUIEasyPlotForm.csproj" />
+    <Project Path="Examples/Ex603.FlexiblePlotForm/Ex603.FlexiblePlotForm.csproj" />
+    <Project Path="Examples/Ex701.LotYieldReport/Ex701.LotYieldReport.csproj" />
+  </Folder>
+</Solution>

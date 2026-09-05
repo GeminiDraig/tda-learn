@@ -1,0 +1,45 @@
+{
+  "DeviceIDCfg": {
+    "DeviceIDType": 0,
+    "TestIDs": null
+  },
+  "Sublots": [
+    {
+      "TestRounds": [
+        {
+          "FilePaths": [
+            "\\DG2406E_Q-M552A004_BGA701B230-E_P__1_1-2-3-4-5-6-7-8-9_T10.stdf"
+          ],
+          "TestHBins": []
+        },
+        {
+          "FilePaths": [
+            "\\DG2406E_Q-M552A004_BGA701B230-E_R__1_2-4-5-6-7-8-9_____T10.stdf"
+          ],
+          "TestHBins": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "FilePaths": [
+            "\\DG2406E_Q-M552A004_BGA701B230-E_RR_1_2-5-6-7-8-9_______T10.stdf"
+          ],
+          "TestHBins": [
+            2,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        }
+      ]
+    }
+  ]
+}
