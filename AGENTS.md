@@ -6,7 +6,7 @@
 
 TDA Framework（半导体 STDF 数据分析 .NET 框架，nuget 包 `TDA` / `TDA.GUI` / `TDA.Report`）的**官方示例与学习仓库**。核心库不开源，本仓库通过示例让"人类 + AI"学会使用 TDA。
 
-当前状态：`Examples/` 已镜像 18 个示例并通过 NuGet 编译；`Docs/`、`Skills/` 为规划板块，尚未落地。
+当前状态：`Examples/` 已镜像 18 个示例并通过 NuGet 编译；`CLI/` 已落地（dp 命令行工具手册）；`Docs/`、`Skills/` 为规划板块，尚未落地。
 
 ## 目录布局
 
@@ -20,6 +20,10 @@ tda-examples/
 │   ├── Ex4xx/ Ex5xx/            # RecordReader 逐条解析 / RecordWriter 写入
 │   ├── Ex6xx/                   # TDA.GUI 图表（GUICharts / EasyPlotForm / FlexiblePlotForm）
 │   └── Ex7xx/                   # TDA.Report 良率报告
+├── CLI/                         # dp 命令行工具手册（公开仓直接维护，非镜像）
+│   ├── README.md                # 入口：定位 / 获取 / 快速开始 / 场景决策
+│   ├── commands.md              # 逐命令参考（语法 / 选项 / 输出列与样例）
+│   └── ai-guide.md              # AI 集成指南（输出分层 / 退出码 / 失败模式 / 工作流模板）
 ├── Docs/                        # （规划中）教程
 ├── Skills/                      # （规划中）AI Skills
 ├── tools/convert-to-nuget-refs.ps1   # ProjectReference → PackageReference 转换脚本
@@ -42,6 +46,7 @@ tda-examples/
 | WinForms 图表控件 | `Ex601.GUICharts`（五种控件）、`Ex602`（EasyPlotForm 速画）、`Ex603`（FlexiblePlotForm 多图布局） |
 | 良率 HTML 报告 | `Ex701.LotYieldReport`（含 `--demo` 自生成数据模式） |
 | STDF 记录 / 字节结构 / Codec | `Src` 不开源；参考 `Ex401` 的 `ToBytesCheck()` 用法 |
+| 零代码快速分析 STDF / 给 AI 拼命令行 | `CLI/README.md`（dp 命令入口，速查在 README、逐命令在 `commands.md`） |
 
 查找 API 用法：在 `Examples/` 下按命名空间 `TDA.*` 反查 `using`，即可找到某 API 的所有示例引用。
 
@@ -61,9 +66,11 @@ dotnet run --project Examples/Ex701.LotYieldReport -- --demo   # 无需真实数
 4. **版本一致性**：升级 TDA 包版本时须同步改全部 csproj + README，且版本必须已发布到 nuget.org（否则用户 clone 后无法还原）。
 5. **Docs/Skills 代码引用约定**（落地后生效）：引用 `Examples/` 相对路径而非复制代码块，避免教程代码随版本过期。
 6. **git 提交**：未经维护者明确指示，不要执行 `git commit` / `git push`（含本仓库与任何相关仓库）。
+7. **`CLI/` 是公开仓直接维护**（非镜像、不走同步脚本）：内容必须与 dp 实际行为一致（以 `dp --help` 为准，未实现功能要显式标注）；不放二进制 / 安装包 / 真实数据；引用 Examples 用相对链接（同第 5 条）。
 
 ## 给维护者的同步提示
 
 - 同步方向唯一：TDA（私有）→ tda-examples（公开）。每次同步对应一次 TDA NuGet 发布。
 - 同步后若发现 csproj 变为 ProjectReference 形式，重跑 `tools/convert-to-nuget-refs.ps1` 转换。
 - 本仓库 git 历史完全独立于 TDA，二者零血缘。
+- 同步只镜像 `Examples/`；`CLI/` 等公开仓直接维护的内容不受同步脚本影响。同一次提交内不要混入「同步镜像 + 手动维护」两类无关联改动，便于回看。
