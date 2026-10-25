@@ -72,17 +72,3 @@ dotnet run --project Examples/Ex101.UseDataPrism
 
 > 各示例的详细说明见 [Examples/README.md](Examples/README.md)。其中标注「源码待补充」的行属于 TDA 内部规划中的示例，尚未随同步进入本仓库。
 
-## 版本对齐
-
-本仓库全部示例当前引用 **TDA / TDA.GUI / TDA.Report 2.1.2**（见各 `.csproj`）。`CLI/` 文档对应 dp 2.x（TDA 2.1.x），升级 TDA 时注意同步核对。升级 TDA 版本时：
-
-1. 确认目标版本已发布到 nuget.org；
-2. 同步替换全部 `.csproj` 中的 `Version`（或重跑 `tools/convert-to-nuget-refs.ps1`）；
-3. 同步更新本文档中标注的版本号。
-
-## 仓库纪律
-
-- `Examples/` 是 TDA 私有仓库的单向快照镜像：目录结构与文件与 `TDA/Examples` 保持 1:1，**不在本仓库内重命名、重组或直接修改示例代码**（改动应先在 TDA 侧完成，再随同步进入）；
-- 示例一律通过 NuGet `PackageReference` 引用，**禁止 `ProjectReference`**（避免引入 TDA 源码）；
-- 真实 `.stdf` / `.std` 测试数据可能含产品信息，**禁止入库**（示例应使用自生成演示数据或命令行参数输入）；
-- `CLI/` 为公开仓库直接维护（非镜像）：内容必须与 dp 实际行为一致，不放二进制 / 安装包 / 真实数据，维护约定见 [CLI/README.md](CLI/README.md)。
