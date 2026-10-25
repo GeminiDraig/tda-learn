@@ -13,7 +13,7 @@ namespace Ex101.UseDataPrism
             //Ex10102_DifferentInputFormats.Execute();      // 三种不同的 DataPrism 构造方式
             //Ex10103_AccessMetaInfoAndRawData.Execute();   // Load 后访问元信息与原始测试值
             //Ex10104_AccessStatistics.Execute();            // Analyzed 后访问统计数据与 Bin 汇总
-            //Ex10105_ApplyTestIDProfile.Execute();          // ApplyTestIDProfile 过滤与重命名 TestID
+            //Ex10105_ApplyTestIDRename.Execute();          // ApplyTestIDRename 过滤与重命名 TestID
 
             Console.WriteLine("Job done!");
         }

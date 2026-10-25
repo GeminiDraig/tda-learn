@@ -1,4 +1,4 @@
-# AGENTS.md — tda-examples 仓库导航（给 AI 助手的导览）
+# AGENTS.md — tda-learn 仓库导航（给 AI 助手的导览）
 
 本文件帮助 AI 助手快速理解仓库结构与约定：**想教用户什么，代码在哪，以及哪些事不能做。**
 
@@ -11,7 +11,7 @@ TDA Framework（半导体 STDF 数据分析 .NET 框架，nuget 包 `TDA` / `TDA
 ## 目录布局
 
 ```
-tda-examples/
+tda-learn/
 ├── Examples/                    # 18 个可运行示例（1:1 镜像自 TDA 私有仓库 Examples/）
 │   ├── README.md                # 各示例详细说明（镜像内容，内部仓库维护）
 │   ├── Ex1xx/                   # 数据分析与导出（DataPrism / CSV）
@@ -28,7 +28,7 @@ tda-examples/
 ├── Skills/                      # （规划中）AI Skills
 ├── tools/convert-to-nuget-refs.ps1   # ProjectReference → PackageReference 转换脚本
 ├── Directory.Build.props        # 统一 TargetFramework：net10.0-windows10.0.19041
-└── tda-examples.slnx            # 全部示例解决方案（.NET 10 slnx 格式）
+└── tda-learn.slnx            # 全部示例解决方案（.NET 10 slnx 格式）
 ```
 
 ## Examples 学习地图（按目标定位示例）
@@ -53,7 +53,7 @@ tda-examples/
 ## 常用命令
 
 ```bash
-dotnet build tda-examples.slnx            # 构建全部（还原走 nuget.org）
+dotnet build tda-learn.slnx            # 构建全部（还原走 nuget.org）
 dotnet run --project Examples/Ex101.UseDataPrism   # 运行单个示例
 dotnet run --project Examples/Ex701.LotYieldReport -- --demo   # 无需真实数据的演示模式
 ```
@@ -70,7 +70,7 @@ dotnet run --project Examples/Ex701.LotYieldReport -- --demo   # 无需真实数
 
 ## 给维护者的同步提示
 
-- 同步方向唯一：TDA（私有）→ tda-examples（公开）。每次同步对应一次 TDA NuGet 发布。
+- 同步方向唯一：TDA（私有）→ tda-learn（公开）。每次同步对应一次 TDA NuGet 发布。
 - 同步后若发现 csproj 变为 ProjectReference 形式，重跑 `tools/convert-to-nuget-refs.ps1` 转换。
 - 本仓库 git 历史完全独立于 TDA，二者零血缘。
 - 同步只镜像 `Examples/`；`CLI/` 等公开仓直接维护的内容不受同步脚本影响。同一次提交内不要混入「同步镜像 + 手动维护」两类无关联改动，便于回看。

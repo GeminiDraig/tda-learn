@@ -11,7 +11,9 @@
     <Project Path="Examples/Ex203.UseMsgInConsoleAndWinform/Ex203.UseMsgInConsoleAndWinform.csproj" />
     <Project Path="Examples/Ex204.CfgFileForDataPrismSetup/Ex204.CfgFileForDataPrismSetup.csproj" />
     <Project Path="Examples/Ex205.CfgFileForTestIDSet/Ex205.CfgFileForTestIDSet.csproj" />
-    <Project Path="Examples/Ex206.CfgFileForTestIDProfileSet/Ex206.CfgFileForTestIDProfileSet.csproj" />
+    <Project Path="Examples/Ex206.CfgFileForTestIDRenameSet/Ex206.CfgFileForTestIDRenameSet.csproj" />
+    <Project Path="Examples/Ex301.UseRecordReader/Ex301.UseRecordReader.csproj" />
+    <Project Path="Examples/Ex302.UseRecordWriter/Ex302.UseRecordWriter.csproj" />
     <Project Path="Examples/Ex601.GUICharts/Ex601.GUICharts.csproj" />
     <Project Path="Examples/Ex602.GUIEasyPlotForm/Ex602.GUIEasyPlotForm.csproj" />
     <Project Path="Examples/Ex603.FlexiblePlotForm/Ex603.FlexiblePlotForm.csproj" />

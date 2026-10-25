@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TDA.GUI" Version="2.1.2" />
+    <PackageReference Include="TDA.GUI" Version="2.1.4" />
   </ItemGroup>
 
 </Project>

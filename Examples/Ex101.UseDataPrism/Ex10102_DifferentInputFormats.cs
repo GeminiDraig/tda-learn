@@ -18,7 +18,7 @@ namespace Ex101.UseDataPrism
         {
             // ──────────────────────────────────────────────────────────
             //  方式三：通过 DataPrismSetup 完整配置
-            //  可以配置多个 Sublot、DeviceID 解析方式、TestIDProfile 等
+            //  可以配置多个 Sublot、DeviceID 解析方式、TestIDRename 等
             // ──────────────────────────────────────────────────────────
             Console.WriteLine("=== 方式一：DataPrismSetup 完整配置 ===");
 

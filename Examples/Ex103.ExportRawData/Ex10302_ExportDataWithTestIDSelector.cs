@@ -41,13 +41,12 @@ namespace Ex103.ExportRawData
             //     SelectTestIDsByTextKeywordsOrNumberRange → 按 TestText 关键字 + TestNumber 区间（硬编码）
             //     SelectTestIDsByRegex                     → 按 TestText 正则匹配（硬编码）
             //     SelectTestIDsWithFailures                → 仅导出存在 Fail 记录的测试项
-            //     SelectTestIDsByTag                       → 按分组标签过滤（GUI 加载 TestIDProfile + Tag）
             //     SelectCommonTestIDs                      → 跨批次取交集
             //     SelectTestIDsByTestSequence              → 按 TestSequence 过滤（0 = 首次执行）
             var dataFilePath = ExportRawDatas(dataPrisms,
                 testIDSelector: SelectTestIDsByText,
                 isFinalDataOnly: true,
-                format: RawDataExportFormat.NEDA);
+                layout: RawDataLayout.NEDA);
 
             Console.WriteLine($"Raw data Exported to {dataFilePath} successfully!");
         }
@@ -153,38 +152,6 @@ namespace Ex103.ExportRawData
                     if (kvp.Value.FailCount > 0)
                         set.Add(kvp.Key);
             return set.Count == 0 ? null : set;
-        }
-
-        /// <summary>
-        /// [TestIDSelector 示例] 按分组标签过滤 TestID。
-        /// 通过 GUI 加载 TestIDProfile 列表（CSV，含 Tag 分组信息），
-        /// 先 <see cref="TestIDProfileSet.FilterByTag"/> 圈出指定标签的条目，
-        /// 再与当前批次实际存在的 TestID 求交集，避免导出本批次不存在的测试项。
-        /// 典型场景：测试程序把测试项按功能/模块打了 Tag（如 "RF" / "PMU" / "Logic"），
-        /// 需要按模块维度整体导出数据。
-        /// <para><b>顺序行为</b>：先 <see cref="TestIDSet.UnionWith"/> 按批次内 TestID 解析顺序收集全部
-        /// 实际存在的测试项（自动去重），再 <see cref="TestIDSet.IntersectWith"/> 纯过滤——保留元素维持原顺序，
-        /// 最终顺序 = 批次内 TestID 解析顺序，与 tag 列表顺序无关。</para>
-        /// </summary>
-        /// <param name="dataPrisms">已 Load 的 DataPrism 集合。</param>
-        /// <returns>筛选后的 TestIDSet；用户取消文件选择时返回 null（表示导出全部）。</returns>
-        public static TestIDSet? SelectTestIDsByTag(IEnumerable<DataPrism> dataPrisms)
-        {
-            TestIDProfileSet? profiles = TDAFileDialog.OpenTestIDProfileSet();
-            if (profiles is null) return null;
-
-            // 只保留 Tag = "RF" 的条目，并降级为 TestIDSet（按需修改 Tag）
-            TestIDSet tagged = profiles.FilterByTag("RF").ToTestIDSet();
-
-            // 先收集所有批次实际存在的 TestID，再与 Tag 筛选结果求交集：
-            //   UnionWith     → 并集，保持原顺序 + 自动去重（等价于逐个 Add）
-            //   IntersectWith → 纯过滤，保持原顺序
-            var set = new TestIDSet();
-            foreach (var dprism in dataPrisms)
-                set.UnionWith(dprism.TestItems.Keys);
-
-            set.IntersectWith(tagged);
-            return set;
         }
 
         /// <summary>

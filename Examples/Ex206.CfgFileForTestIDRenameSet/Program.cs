@@ -1,7 +1,7 @@
-﻿namespace Ex206.CfgFileForTestIDProfileSet
+﻿namespace Ex206.CfgFileForTestIDRenameSet
 {
     /// <summary>
-    /// Ex206：演示 TestIDProfileSet 配置文件的创建、读写与转换。
+    /// Ex206：演示 TestIDRenameSet 配置文件的创建、读写与转换。
     /// </summary>
     internal static class Program
     {

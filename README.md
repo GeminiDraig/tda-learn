@@ -1,6 +1,8 @@
-# tda-examples
+# tda-learn
 
-**TDA Framework 官方示例与学习仓库** — 半导体 STDF 数据分析入门到实战。
+**TDA Framework 官方示例与学习仓库** — 半导体 STDF（Standard Test Data Format，标准测试数据格式）数据分析，从入门到实战。
+
+> 关键词：STDF · Standard Test Data Format · 半导体量产测试（ATE）· CP / FT · 晶圆良率（Wafer Yield）· 测试数据解析与分析 · .NET / C#
 
 [TDA Framework](https://www.nuget.org/packages/TDA) 是一个面向半导体量产测试数据分析的 .NET 框架（STDF V4 解析、多 Sublot / 复测数据关联、统计分析与 Cp/Cpk、NEDA CSV / Excel 导入导出、WinForms 可视化等），核心库以 NuGet 包形式公开发布：
 
@@ -13,14 +15,14 @@
 ## 仓库结构
 
 ```
-tda-examples/
+tda-learn/
 ├── Examples/   # 可运行示例代码（与 TDA 内部仓库 1:1 镜像，NuGet 引用方式）
 ├── CLI/        # dp 命令行工具手册：零代码调用 DataPrism（公开仓直接维护，见 CLI/README.md）
 ├── Docs/       # 教程文档（规划中）
 ├── Skills/     # AI Skills：面向常见 TDA 使用场景（规划中）
 ├── tools/      # 维护脚本（ProjectReference → NuGet 引用转换等）
 ├── Directory.Build.props   # 统一 TargetFramework
-└── tda-examples.slnx       # 全部示例的解决方案
+└── tda-learn.slnx       # 全部示例的解决方案
 ```
 
 ## CLI 工具（dp）：不写代码，直接分析 STDF
@@ -35,7 +37,7 @@ tda-examples/
 
 ```bash
 # 还原并构建全部示例
-dotnet build tda-examples.slnx
+dotnet build tda-learn.slnx
 
 # 运行某个示例（以 Ex101.UseDataPrism 为例）
 dotnet run --project Examples/Ex101.UseDataPrism

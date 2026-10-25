@@ -7,7 +7,7 @@ namespace Ex101.UseDataPrism
     /// <summary>
     /// 演示 Load + DoStatisticAnalysis 后可访问的统计数据：
     /// 1) TestItem.Statistic — 均值、标准差、Cp/Cpk、百分位数等
-    /// 2) TestItem.Statistic 按 Site 统计 — Site 间 Gap (SGM/SGI)
+    /// 2) TestItem.Statistic 按 Site 统计 — Site 间 Gap (SGM_Mdn/SGM_Avg/SGI_Mdn/SGI_Avg)
     /// 3) DataPrism.Summary — Lot 级别 Bin 汇总（Yield、HBin/SBin 计数）
     ///
     /// 关键点：统计分析必须在 Load 之后执行，才能访问 Statistic 和 Summary。
@@ -54,7 +54,10 @@ namespace Ex101.UseDataPrism
                 // ── 按 Site 统计与 Site 间 Gap ─────────────────────
                 if (stat.Sites is { Count: > 1 })
                 {
-                    Console.WriteLine($"    Site Gap: SGM={stat.SGM:F4}  SGI={stat.SGI:F4}");
+                    Console.WriteLine(
+                        $"    Site Gap (Mdn): SGM_Mdn={stat.SGM_Mdn:F4}  SGI_Mdn={stat.SGI_Mdn:F4}");
+                    Console.WriteLine(
+                        $"    Site Gap (Avg): SGM_Avg={stat.SGM_Avg:F4}  SGI_Avg={stat.SGI_Avg:F4}");
                     for (int i = 0; i < stat.Sites.Count; i++)
                     {
                         Console.WriteLine($"      Site {stat.Sites[i]}:  " +

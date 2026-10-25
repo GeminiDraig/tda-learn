@@ -8,7 +8,7 @@ using static TDA.DataPrism;
 namespace Ex103.ExportRawData
 {
     /// <summary>
-    /// 通过 <see cref="PartFilter"/> 委托实现多种芯片级数据筛选，并将筛选结果导出为 NEDA 格式 CSV。
+    /// 通过 <see cref="PartFilter"/> 委托实现多种芯片级数据筛选，并将筛选结果导出为 NEDA 布局 CSV。
     /// 本范例内置 16 种筛选器：全部 / SoftBin / HardBin / XY 坐标 / 首个失败测试项 / Pass-Fail /
     /// Site / 数据来源 / 测试轮次 / 坐标区域 / 测试时间 / PartID / 抽样 / 超出规格（Out of Spec, OOS）/
     /// FirstFail TestText 正则 / 按测试值范围（TestID 实测值落在指定区间才保留）。
@@ -46,7 +46,7 @@ namespace Ex103.ExportRawData
                 //只需要获取raw data的话，完全没必要执行DoStatisticAnalysis这个步骤
             }
 
-            // ── Step 3: 选择 PartFilter 并导出 NEDA 格式 ─────────────
+            // ── Step 3: 选择 PartFilter 并导出 NEDA 布局 ─────────────
             //  按需从下面 16 个筛选器中选一个传入 partFilter 参数（想换哪种筛选就改这一行）：
             //    PartFilterAll             → 全部导出
             //    SoftBinFilter             → 仅导出 TargetSoftBins 指定的 SoftBin
@@ -66,7 +66,7 @@ namespace Ex103.ExportRawData
                 dataPrisms,
                 testIDSet: null,
                 isFinalDataOnly: true,
-                format: RawDataExportFormat.NEDA,
+                layout: RawDataLayout.NEDA,
                 partFilter: SoftBinFilter); // ← 切换筛选器：修改这里传入的委托即可
 
             Console.WriteLine($"Filtered data exported to: {dataFilePath}");

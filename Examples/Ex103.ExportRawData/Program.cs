@@ -14,6 +14,7 @@ namespace Ex103.ExportRawData
             Ex10301_ExportDataWithSpecifiedTestIDs.Execute();
             //Ex10302_ExportDataWithTestIDSelector.Execute();
             //Ex10311_ExportDataWithPartFilter.Execute();
+            //Ex10312_ExportDataWithDeviceIDLookup.Execute();
             Console.WriteLine("Job Done!");
         }
     }

@@ -37,7 +37,7 @@ namespace Ex103.ExportRawData
             }
 
             // ── Step 4: 批量导出 Final Data 到 CSV ──────────────────────
-            var dataFilePath = DataPrism.ExportRawDatas(dataPrisms, tstIdList, isFinalDataOnly: true, RawDataExportFormat.NEDA);
+            var dataFilePath = DataPrism.ExportRawDatas(dataPrisms, tstIdList, isFinalDataOnly: true, RawDataLayout.NEDA);
 
             Console.WriteLine($"Raw data Exported to {dataFilePath} successfully!");
         }

@@ -16,7 +16,7 @@
 | [Ex203.UseMsgInConsoleAndWinform](#ex203usemsginconsoleandwinform) | 演示在「控制台 + WinForm」混合宿主中使用 `Msg` 消息系统                                                              |
 | [Ex204.CfgFileForDataPrismSetup](#ex204cfgfilefordataprismsetup) | 演示构建含多 Sublot / 多轮复测的 `DataPrismSetup`，并序列化 / 反序列化为 JSON 配置文件（绝对 / 相对路径两种风格）     |
 | [Ex205.CfgFileForTestIDSet](#ex205cfgfilefortestidset)           | 演示 `TestIDSet` 配置文件的读写流程：从 STDF 导出全部 TestID 到 CSV，再读回并打印                                     |
-| [Ex206.CfgFileForTestIDProfileSet](#ex206cfgfilefortestidprofileset) | 演示 `TestIDProfileSet` 配置文件的创建、读写与从 `TestIDSet` 转换                                                    |
+| [Ex206.CfgFileForTestIDRenameSet](#ex206cfgfilefortestidrenameset) | 演示 `TestIDRenameSet` 配置文件的创建、读写与从 `TestIDSet` 转换                                                    |
 | [Ex301.UseRecordReader](#ex301userecordreader)                   | 演示 `RecordReader` 读取 STDF 文件：基本工作流、显式关闭、通用 / 强类型逐条读取，及解压模式（Buffered / Streaming）对比 |
 | [Ex302.UseRecordWriter](#ex302userecordwriter)                   | 演示用 `RecordReader` 逐条读取源文件、`RecordWriter` 写入新文件，展示 STDF 完整读写流程及写入统计摘要                 |
 | [Ex601.GUICharts](#ex601guicharts)                               | 演示 TDA.GUI 全部 5 种图表控件（趋势图 / 直方图 / 累积概率图 / 箱线图 / 晶圆图）在同一窗口 Tab 页中的展示             |
@@ -58,7 +58,7 @@
 | `Ex10102_DifferentInputFormats` | 三种不同的 `DataPrism` 构造方式 |
 | `Ex10103_AccessMetaInfoAndRawData` | `Load()` 后访问元信息与原始测试值 |
 | `Ex10104_AccessStatistics` | 分析后访问统计数据与 Bin 汇总 |
-| `Ex10105_ApplyTestIDProfile` | `ApplyTestIDProfile` 过滤与重命名 TestID |
+| `Ex10105_ApplyTestIDRename` | `ApplyTestIDRename` 过滤与重命名 TestID |
 
 ### Ex102.ExportParamsStatistics
 
@@ -136,16 +136,16 @@
 | --- | --- |
 | `Ex20501_TestIDSetCfgFileWriteRead` | TestIDSet 配置文件写出与读回 |
 
-### Ex206.CfgFileForTestIDProfileSet
+### Ex206.CfgFileForTestIDRenameSet
 
-演示 `TestIDProfileSet` 配置文件的创建、读写与转换。默认运行 `Ex20601`。
+演示 `TestIDRenameSet` 配置文件的创建、读写与转换。默认运行 `Ex20601`。
 
 | 演示文件 | 说明 |
 | --- | --- |
 | `Ex20601_ProfileFromStdfAndSaveCsv` | 从 STDF 文件生成 Profile 并保存为 CSV |
 | `Ex20602_CreateProfileManuallyAndSaveCsv` | 手动构建 Profile 并保存为 CSV |
 | `Ex20603_LoadProfileFromCsv` | 从 CSV 加载 Profile |
-| `Ex20604_ConvertFromTestIDSet` | 从 `TestIDSet` 转换为 `TestIDProfileSet` |
+| `Ex20604_ConvertFromTestIDSet` | 从 `TestIDSet` 转换为 `TestIDRenameSet` |
 
 ---
 
