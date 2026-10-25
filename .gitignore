@@ -206,6 +206,15 @@ PublishScripts/
 !**/packages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/packages/repositories.config
+
+# ---- tda-learn own exceptions (do not remove) ----
+# In this repo packages/ is NOT a restore artifact: it is the public mirror of the
+# TDA / TDA.GUI / TDA.Report READMEs, so it must be committed.
+!/packages/
+!/packages/**
+# Maintenance scripts under tools/ must be committed despite the global *.ps1 rule
+# (tools/convert-to-nuget-refs.ps1 is tracked the same way).
+!/tools/*.ps1
 # NuGet v3's project.json files produces more ignoreable files
 *.nuget.props
 *.nuget.targets

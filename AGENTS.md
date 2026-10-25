@@ -26,7 +26,12 @@ tda-learn/
 │   └── ai-guide.md              # AI 集成指南（输出分层 / 退出码 / 失败模式 / 工作流模板）
 ├── Docs/                        # （规划中）教程
 ├── Skills/                      # （规划中）AI Skills
+├── packages/                    # NuGet 包 README 的公开镜像（TDA 单向同步，禁止在此直接编辑）
+│   ├── TDA/{README.md, README.zh-CN.md}
+│   ├── TDA.GUI/{README.md, README.zh-CN.md}
+│   └── TDA.Report/{README.md, README.zh-CN.md}
 ├── tools/convert-to-nuget-refs.ps1   # ProjectReference → PackageReference 转换脚本
+├── tools/sync-package-readme.ps1     # TDA Src/<包>/README → packages/ 单向同步
 ├── Directory.Build.props        # 统一 TargetFramework：net10.0-windows10.0.19041
 └── tda-learn.slnx            # 全部示例解决方案（.NET 10 slnx 格式）
 ```
@@ -67,10 +72,13 @@ dotnet run --project Examples/Ex701.LotYieldReport -- --demo   # 无需真实数
 5. **Docs/Skills 代码引用约定**（落地后生效）：引用 `Examples/` 相对路径而非复制代码块，避免教程代码随版本过期。
 6. **git 提交**：未经维护者明确指示，不要执行 `git commit` / `git push`（含本仓库与任何相关仓库）。
 7. **`CLI/` 是公开仓直接维护**（非镜像、不走同步脚本）：内容必须与 dp 实际行为一致（以 `dp --help` 为准，未实现功能要显式标注）；不放二进制 / 安装包 / 真实数据；引用 Examples 用相对链接（同第 5 条）。
+8. **`packages/` 是单向镜像**（禁止在此直接编辑）：`TDA` / `TDA.GUI` / `TDA.Report` 的 README 同时供 NuGet 包主页（`PackageReadmeFile`）与本目录深链使用，唯一事实源在 TDA 私有仓 `Src/<包>/README.md` 与 `README.zh-CN.md`。改动先回 TDA 侧，再跑 `tools/sync-package-readme.ps1` 同步过来。
 
 ## 给维护者的同步提示
 
 - 同步方向唯一：TDA（私有）→ tda-learn（公开）。每次同步对应一次 TDA NuGet 发布。
+- **两个脚本分管两类镜像，互不重叠**：`tools/tda-examples-sync.ps1` 只镜像 `Examples/`；包 README 要走 `tools/sync-package-readme.ps1` **单独跑一次**（它不会被 Examples 同步脚本带上，漏跑就会让 nuget.org 包主页与本目录说法不一致）。
+- **`packages/` 不是只在发版时才同步**：改了任一包的 README（哪怕没发新版）也要同步一次；`-WhatIfOnly` 可只看差异。
 - 同步后若发现 csproj 变为 ProjectReference 形式，重跑 `tools/convert-to-nuget-refs.ps1` 转换。
 - 本仓库 git 历史完全独立于 TDA，二者零血缘。
-- 同步只镜像 `Examples/`；`CLI/` 等公开仓直接维护的内容不受同步脚本影响。同一次提交内不要混入「同步镜像 + 手动维护」两类无关联改动，便于回看。
+- `CLI/` 等公开仓直接维护的内容不受任何同步脚本影响。同一次提交内不要混入「同步镜像 + 手动维护」两类无关联改动，便于回看。
