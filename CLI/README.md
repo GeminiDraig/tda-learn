@@ -1,5 +1,6 @@
 # dp — TDA 命令行工具（TDA.CLI）
 
+> 中文 | [English](README.en.md)
 > **文档版本：** v1.0 · 2026-09 · 适用 dp 2.x（TDA Framework 2.1.x）
 > **维护位置：** 本目录（tda-learn `CLI/`）直接维护，随 dp 版本更新。若文中用法与 `dp --help` 不一致，**以实际命令行为准**，并请顺手修正本文档。
 
