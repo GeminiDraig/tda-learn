@@ -83,13 +83,16 @@
 
 ### Ex105.ExportSummary
 
-将 `DataPrism` 分析结果中的 HBin / SBin 统计摘要（Yield、各 Bin 分布数量）导出为 CSV。默认运行 `Ex10503`。
+将 `DataPrism` 分析结果中的 Yield / HBin / SBin 统计摘要导出为 CSV。默认运行 `Ex10506`。
 
 | 演示文件 | 说明 |
 | --- | --- |
-| `Ex10501_ExportSummary` | 调用 `DataPrism.ExportSummary` 导出基本摘要 |
+| `Ex10501_ExportSummary` | 调用 `DataPrism.ExportSummary` 一次导出 Yield + HBin + SBin 三个区块 |
 | `Ex10502_ExportSummaryCustomizeFormat` | 自定义输出格式后导出 |
 | `Ex10503_ExportSummaryMultiLot` | 多批次（IEnumerable）数据合并导出 |
+| `Ex10504_ExportYield` | 只导出 Yield（Qty 统计）区块，输出 `<stem>.yield.csv` |
+| `Ex10505_ExportHBin` | 只导出 HBin 区块，输出 `<stem>.hbin.csv` |
+| `Ex10506_ExportSBin` | 只导出 SBin 区块；并演示 `csvWriter` 重载把三个区块拼进同一个 CSV |
 
 ### Ex106.ExportPartSummary
 
