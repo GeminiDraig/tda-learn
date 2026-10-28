@@ -11,9 +11,10 @@
 | `dp export tsum` | 同上 | `-t/--testid` | `<名>.tsum.csv` | ~100 KB | ✅ |
 | `dp export psum`（别名 `dsum`） | 同上 | — | `<名>.psum.csv` | ~2 MB | ✅ |
 | `dp export lsum`（别名 `lot-summary`） | 同上 | — | `<名>.lsum.csv` | < 1 KB | ✅ |
+| `dp export yield` | 同上 | — | `<名>.yield.csv` | < 1 KB | ✅ |
 | `dp export hbin`（别名 `hard-bin`） | 同上 | — | `<名>.hbin.csv` | < 1 KB | ✅ |
 | `dp export sbin`（别名 `soft-bin`） | 同上 | — | `<名>.sbin.csv` | < 1 KB | ✅ |
-| `dp export sum`（别名 `all-summary`） | 同上 | — | `<名>.sum.csv` | ~1 KB | ✅ |
+| `dp export sum`（别名 `all-summary`） | 同上 | — | `<名>.sum.csv` | ~2 KB | ✅ |
 | `dp export tidset` | 同上 | — | `<名>.tidset.csv` | ~15 KB | ✅ |
 | `dp export info` | 同上 | — | `<名>.info.csv` | < 1 KB | ✅ |
 | `dp create setup` | .stdf 文件 | `-o/--output` | `<名>.setup.json` | < 1 KB | ✅ |
@@ -168,32 +169,74 @@ DEMO-001,1,67200,65132,2068,0,96.92
 
 ---
 
-## dp export hbin / sbin — Bin 分布
+## dp export yield — 良率统计（只要数字）
+
+```powershell
+dp export yield "D:\data\demo_lot.stdf"
+dp export yield "D:\config\setup.json" -o "D:\result\yield.csv"
+```
+
+**输出内容：** Total / Pass / Fail / Invalid 四行的全局值与各 Site 值，横表形态。
+
+示意：
+
+```
+Qty Statistic:
+,,Pct(%),All,S0,S1,S2,S3
+,Total Qty,100.00%,67200,16800,16800,16800,16800
+,Pass Qty,96.92%,65132,16310,16280,16290,16252
+,Fail Qty,3.08%,2068,490,520,510,548
+,Invalid Qty,0.00%,0,0,0,0,0
+```
+
+- `Pct(%)` 是占整批 `Total Qty` 的百分比；各 Site 列之和 = `All`。
+- 与 `lsum` 数字同源，区别只在形态：`yield` 是「行 = 四类 Qty、列 = All + 各 Site」的横表，`lsum` 是 `Lot Summary` + `By Site` 两段纵表。
+- 只要良率数字、不想连带 Bin 明细时用 `yield`；要合成一份用 `sum`。
+
+---
+
+## dp export hbin / sbin — Bin 分布（含各 Site）
 
 ```powershell
 dp export hbin "D:\data\demo_lot.stdf"
 dp export sbin "D:\config\setup.json" -o "D:\result\sbin.csv"
 ```
 
-**输出列：** `BinNo, BinName, ResultType, Count, Percentage`
+**输出列：** `HBin, ResultType, Name, Pct(%), All, S<site>…`（`sbin` 首列为 `SBin`）
 
-示意：
+示意（`hbin`，4 个 Site）：
 
 ```
-1,PASS,Pass,65000,96.73
-2,OPEN,Fail,1200,1.79
+HBin,ResultType,Name,Pct(%),All,S0,S1,S2,S3
+1,Pass,PASS,96.73%,65000,16300,16200,16250,16250
+2,Fail,OPEN,1.79%,1200,300,310,290,300
 ```
+
+- `All` = 该 Bin 的全局计数；其后是每个 Site 各自的计数，某 Site 没有这个 Bin 时填 0，可直接做 site 间对比。
+- 行按 `All` 从大到小排序（`All` 相同时按 Bin 号升序）。
+
+> **Bin 计数口径：** `All` 按全部测试轮次累计，`Pct(%)` 的分母是 final 数据的 TotalQty，有复测时各 Bin 的 `All` 之和可能大于 TotalQty、`Pct(%)` 可超过 100%。**判断良率看 `lsum` / `yield`。**
 
 ---
 
-## dp export sum — 综合摘要（lsum + hbin + sbin 合并）
+## dp export sum — 综合摘要（yield + hbin + sbin 合并）
 
 ```powershell
 dp export sum "D:\data\demo_lot.stdf"
 dp export sum "D:\data\demo_lot.stdf" -o "D:\result\summary.csv"
 ```
 
-单个 CSV 文件、多段格式（段标题 + 空行分隔），便于一份文件带走全部摘要。
+单个 CSV 文件、多段格式（段标题 + 空行分隔），便于一份文件带走全部摘要。三个段依次是：
+
+```
+Qty Statistic:      # = dp export yield
+HBin Statistic:     # = dp export hbin
+SBin Statistic:     # = dp export sbin
+```
+
+三段都带各 Site 列。多份数据（`--group-by`）时每段前还会加 `==== <数据源名> (i/n) ====` 标识行。
+
+> `sum` 里**没有** LotID / SublotID / YieldRate —— 要带批次标识的良率纵表用 `dp export lsum`。
 
 ---
 

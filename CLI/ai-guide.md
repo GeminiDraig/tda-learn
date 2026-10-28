@@ -18,9 +18,9 @@ dp 与 TDA 库共享同一内核：dp 跑出来的 CSV 与用库 API 导出的�
 | 用户说（或隐含意图） | 命令序列 |
 | --- | --- |
 | "分析这份 STDF / 看这个批次" | 先 `dp export info`（这是什么文件）→ 再按需 |
-| "良率多少 / Pass Fail" | `dp export lsum` |
+| "良率多少 / Pass Fail" | `dp export lsum`；只想要四行数字（含各 Site 对比）用 `dp export yield` |
 | "哪个参数不合格 / Cp Cpk" | `dp export tsum` |
-| "每颗 Die 情况 / Bin 分布" | `dp export psum`、`dp export hbin`、`dp export sbin` |
+| "每颗 Die 情况 / Bin 分布" | `dp export psum`、`dp export hbin`、`dp export sbin`（后两者带各 Site 计数） |
 | "导原始数据 / 让我看数值明细" | `dp export raw`（**注意量级**，先 `tidset` 缩小范围） |
 | "复测 / 多轮数据怎么关联" | `dp create setup`（多文件一次性推断）→ 后续命令吃 setup |
 | "把结果汇总一下" | `dp export sum` |
@@ -36,7 +36,7 @@ dp **没有 `--stdout`**：数据结果一律**落盘**，终端只回状态/警
 
 | 层级 | 输出量级 | 命令 | 建议 |
 | --- | --- | --- | --- |
-| 极轻量 | < 1 KB | `info` `lsum` `hbin` `sbin` `sum` `create setup` `show version` | 直接读整个 CSV，一次全拿 |
+| 极轻量 | < 1 KB | `info` `lsum` `yield` `hbin` `sbin` `sum` `create setup` `show version` | 直接读整个 CSV，一次全拿 |
 | 轻量 | 1 ~ 200 KB | `tidset`(~15 KB) `tsum`(~100 KB) | 可直接读，仍在常规上下文内 |
 | 中量 | 0.2 ~ 5 MB | `psum`(~2 MB) | 建议读前 N 行 + 用脚本聚合（如按 Bin 计数），勿整读 |
 | 重量 | > 5 MB | `raw`（可达 100 MB+） | **绝不整读**：只读结构（行数/列头/抽样前几行）或按需过滤后重新导出 |
@@ -135,7 +135,7 @@ dp 与示例库共用内核。想理解命令背后的数据语义 / 验证边�
 | `export info` / 基础加载 | [Ex101.UseDataPrism](../Examples/Ex101.UseDataPrism) |
 | `export tsum` / 统计 | [Ex102.ExportParamsStatistics](../Examples/Ex102.ExportParamsStatistics) |
 | `export raw` | [Ex103.ExportRawData](../Examples/Ex103.ExportRawData) |
-| `export lsum / hbin / sbin` | [Ex105.ExportSummary](../Examples/Ex105.ExportSummary) |
+| `export lsum / yield / hbin / sbin` | [Ex105.ExportSummary](../Examples/Ex105.ExportSummary) |
 | `export psum` | [Ex106.ExportPartSummary](../Examples/Ex106.ExportPartSummary) |
 | `create setup` 关系推断 | [Ex204.CfgFileForDataPrismSetup](../Examples/Ex204.CfgFileForDataPrismSetup) |
 | TestID / Profile 过滤语义 | [Ex205.CfgFileForTestIDSet](../Examples/Ex205.CfgFileForTestIDSet)、[Ex206](../Examples/Ex206.CfgFileForTestIDProfileSet) |

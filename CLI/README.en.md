@@ -64,10 +64,11 @@ Full per-command reference lives in [commands.md](commands.md). Quick lookup:
 | Task | Command |
 | --- | --- |
 | Yield / Pass / Fail / per-Site summary | `dp export lsum` |
+| Just the four yield rows (global + per site, wide table) | `dp export yield` |
 | Test-item statistics (Cp / Cpk / quantiles, 30+ columns) | `dp export tsum` |
 | Per-part detail (Bin / coordinates / Pass / round) | `dp export psum` |
-| HardBin / SoftBin distribution | `dp export hbin` / `dp export sbin` |
-| lsum + hbin + sbin in one report | `dp export sum` |
+| HardBin / SoftBin distribution (with per-site counts) | `dp export hbin` / `dp export sbin` |
+| yield + hbin + sbin in one report (with per-site columns) | `dp export sum` |
 | Test-item list (reusable as a filter file) | `dp export tidset` |
 | Test-item list + empty rename columns | `dp export tidrenameset` |
 | Raw test values (large — mind the size) | `dp export raw` |
@@ -96,7 +97,7 @@ Not implemented — do not expect them: `dp plot tmap` / `dp plot wmap`.
 
 | User request | Recommended command | Notes |
 | --- | --- | --- |
-| "What is the yield of this STDF?" | `dp export lsum` | tiny output (< 1 KB) |
+| "What is the yield of this STDF?" | `dp export lsum` / `dp export yield` | tiny output (< 1 KB); `yield` is a wide table, easier for site-by-site comparison |
 | "Which test items have a high fail rate?" | `dp export tsum`, then sort by `FailedRate` | ~100 KB |
 | "What is the bin distribution per die?" | `dp export psum` / `hbin` | |
 | "This lot has retests — export final data only" | `dp export raw` (default: final rounds only) | **heavy output, always pass `-o`** |

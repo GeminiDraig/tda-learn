@@ -64,10 +64,11 @@ dp export lsum "D:\data\**\*.std"
 | 想做什么 | 命令 |
 | --- | --- |
 | 良率 / Pass / Fail / 按 Site 汇总 | `dp export lsum` |
+| 只要良率四行的全局 + 各 Site 值（横表） | `dp export yield` |
 | 测试项统计（Cp/Cpk/分位数等，30 列） | `dp export tsum` |
 | 逐颗 Part 明细（Bin/坐标/Pass/轮次） | `dp export psum` |
-| HardBin / SoftBin 分布 | `dp export hbin` / `dp export sbin` |
-| lsum+hbin+sbin 合并报表 | `dp export sum` |
+| HardBin / SoftBin 分布（含各 Site 计数） | `dp export hbin` / `dp export sbin` |
+| yield+hbin+sbin 合并报表（含各 Site） | `dp export sum` |
 | 测试项清单（可复用为过滤文件） | `dp export tidset` |
 | 原始测试值逐条导出（大文件，注意体积） | `dp export raw` |
 | Lot 基本信息（LotID/产品/程序/站点等） | `dp export info` |
@@ -83,7 +84,7 @@ dp export lsum "D:\data\**\*.std"
 
 | 用户诉求 | 推荐命令 | 备注 |
 | --- | --- | --- |
-| "这份 STDF 良率多少？" | `dp export lsum` | 输出极小（< 1 KB 级） |
+| "这份 STDF 良率多少？" | `dp export lsum` / `dp export yield` | 输出极小（< 1 KB 级）；`yield` 是横表，更适合直接对比各 Site |
 | "哪些测试项不合格率高？" | `dp export tsum` 后按 `FailedRate` 排序 | ~100 KB 级 |
 | "每颗 Die 的 Bin 分布如何？" | `dp export psum` / `hbin` | |
 | "这个 Lot 有复测，把 Final 数据导出来" | `dp export raw`（默认仅 Final 轮次） | **重量输出，务必指定 `-o`** |
