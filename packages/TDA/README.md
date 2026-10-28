@@ -58,6 +58,9 @@ Console.WriteLine($"Parts: {dp.PartsDescription.Length}, Test items: {dp.TestIte
 
 // 3. Export parameter statistics to CSV
 DataPrism.ExportStatistics(dp, outfile: @"C:\output\param_stats.csv");
+
+// 4. Export lot overview (yield, HardBin, SoftBin — all with per-site columns)
+DataPrism.ExportSummary(dp, outfile: @"C:\output\lot_summary.csv");   // or ExportYield / ExportHBin / ExportSBin
 ```
 
 ### Multi-round retest configuration

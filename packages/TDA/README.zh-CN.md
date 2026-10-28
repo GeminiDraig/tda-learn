@@ -60,6 +60,9 @@ Console.WriteLine($"Parts: {dp.PartsDescription.Length}, Test items: {dp.TestIte
 
 // 3. 导出参数统计到 CSV
 DataPrism.ExportStatistics(dp, outfile: @"C:\output\param_stats.csv");
+
+// 4. 导出批次总览（良率 / HardBin / SoftBin，均含各 Site 列）
+DataPrism.ExportSummary(dp, outfile: @"C:\output\lot_summary.csv");   // 也可单独 ExportYield / ExportHBin / ExportSBin
 ```
 
 ### 多轮复测配置
