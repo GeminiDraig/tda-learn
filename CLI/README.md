@@ -1,7 +1,7 @@
 # dp — TDA 命令行工具（TDA.CLI）
 
 > 中文 | [English](README.en.md)
-> **文档版本：** v1.0 · 2026-09 · 适用 dp 2.x（TDA Framework 2.1.x）
+> **文档版本：** v1.1 · 2026-10 · 适用 dp 2.x（当前发布版 2.1.5，TDA Framework 2.1.x）
 > **维护位置：** 本目录（tda-learn `CLI/`）直接维护，随 dp 版本更新。若文中用法与 `dp --help` 不一致，**以实际命令行为准**，并请顺手修正本文档。
 
 `dp` 是 TDA Framework 的命令行接口：把 DataPrism 的核心能力（STDF 解析、多 Sublot / 复测关联、统计分析、CSV 导出、Setup 配置生成）封装为**一行命令**，无需编写任何 C# 代码即可完成常见的数据分析任务。
@@ -26,14 +26,58 @@
 - **后台缓存加速**：数据命令默认经由常驻 Daemon 进程执行，同一 STDF 只加载一次，重复分析命中缓存（详见 [ai-guide.md](ai-guide.md)）；
 - **Windows / .NET**：基于 .NET 10 构建，仅支持 Windows 10/11。
 
-## 获取 dp
+## 安装 dp
 
-dp 目前处于内部开发阶段，**尚未公开发布**；规划中的发布形态为 **MSI 安装包，将托管在本仓库的 Release 页面**（即将提供）。
+dp 以 **MSI 安装包**形式发布，托管在本仓库的 Release 页面。
 
-- 已通过内部渠道获得绿色包（免安装目录）的用户：目标机需 Windows 10/11 + **.NET 10 Desktop Runtime（x64）**，把目录加入 `PATH` 后 `dp` 即可用；
-- MSI 正式发布后，本节将更新为标准安装步骤（Release → 下载 → 安装 → 验证）。
+### 系统要求
 
-> 需要提前体验完整命令？可联系维护者获取当前内部版本。
+| 项目 | 要求 |
+| --- | --- |
+| 操作系统 | Windows 10 2004+ / Windows 11（x64） |
+| 运行库 | [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0)（x64） |
+
+> 必须是 **Desktop** Runtime（TDA 核心库带 WinForms 依赖），普通 Runtime 不够；下载页请选择 "Desktop apps" 的 x64 版本。安装程序启动前会自动检测，未装会拦截并给出下载地址。
+
+### 安装步骤
+
+1. 打开 [Release 页面](https://gitcode.com/GeminiDraig/tda-learn/releases/dp-v2.1.5)（当前版本 dp v2.1.5），下载 MSI 安装包；
+2. 双击运行，按向导完成安装（需管理员权限）；
+3. **重新打开终端**（PATH 只在新建的终端进程中生效），验证：
+
+```powershell
+dp show version      # 输出 dp 与 TDA 框架版本
+```
+
+安装后：
+
+- 安装目录为 `C:\Program Files\TDA\CLI`，已自动加入用户 PATH，任意终端可直接敲 `dp`；
+- 开始菜单会出现「dp (TDA CLI)」快捷方式。
+
+### 升级与卸载
+
+- **升级**：直接安装更高版本的 MSI，旧版本自动被替换；低版本安装会被拦截（确需回退时先卸载当前版本，再装旧版 MSI）。
+- **卸载**：「设置 → 应用」或控制面板「程序和功能」中找到 dp 卸载。
+
+> 升级前无需手动结束后台进程，安装程序会自动处理。
+
+### 安装后自检
+
+```powershell
+dp show version                          # 版本信息
+dp export info "D:\data\demo_lot.stdf"   # 实跑一条数据命令
+```
+
+> 第一条数据命令会自动启动后台 Daemon 并加载文件，明显偏慢属正常，详见下方「快速开始」。
+
+### 装完用不了？
+
+| 现象 | 原因 / 处理 |
+| --- | --- |
+| `dp` 不是内部或外部命令 | 终端未重开，PATH 未刷新；重开终端再试 |
+| 安装被拦截并提示缺少运行库 | 按提示下载安装 .NET 10 **Desktop** Runtime（x64）后重跑安装包 |
+| 运行时报找不到 .NET / `hostfxr.dll` | 同上，装的是普通 Runtime 而非 Desktop Runtime |
+| 安装时弹出 SmartScreen「Windows 已保护你的电脑」 | 安装包尚未代码签名；点「更多信息」→「仍要运行」继续 |
 
 ## 快速开始（30 秒）
 
@@ -102,7 +146,7 @@ dp export lsum "D:\data\**\*.std"
 
 | 文件 | 内容 |
 | --- | --- |
-| `README.md`（本文件） | 定位、获取、快速开始、场景入口 |
+| `README.md`（本文件） | 定位、安装、快速开始、场景入口 |
 | [commands.md](commands.md) | 全部命令的逐条参考：语法 / 选项 / 输入输出 / 输出列与样例 |
 | [ai-guide.md](ai-guide.md) | 面向 AI / 脚本的集成指南：命令选择决策、输出规模分层、退出码、失败模式 |
 

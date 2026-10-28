@@ -1,7 +1,7 @@
 # dp — TDA Command-Line Tool (TDA.CLI)
 
 > [中文](../README.md) | English
-> **Doc version:** v1.0 · 2026-09 · applies to dp 2.x (TDA Framework 2.1.x)
+> **Doc version:** v1.1 · 2026-10 · applies to dp 2.x (current release 2.1.5, TDA Framework 2.1.x)
 > **Maintenance:** this document is maintained directly in the tda-learn repository (`CLI/`), not mirrored from elsewhere. If anything here disagrees with `dp --help`, **the actual CLI wins** — and please fix this file.
 
 `dp` is the command-line interface of TDA Framework. It wraps the core capabilities of DataPrism — STDF parsing, multi-sublot / retest correlation, statistical analysis, CSV export, and Setup config generation — into **one-line commands**, so common data-analysis tasks need no C# code at all.
@@ -26,14 +26,58 @@ Both are powered by the same DataPrism engine, so their capabilities overlap. To
 - **Background caching**: data commands run through a resident daemon by default; an STDF file is loaded once and later commands hit the cache (see [ai-guide.md](ai-guide.md)).
 - **Windows / .NET**: built on .NET 10, Windows 10/11 only.
 
-## Getting dp
+## Installing dp
 
-dp is currently distributed through internal channels; public distribution is planned as an **MSI installer hosted in this repository's Releases page**.
+dp ships as an **MSI installer** published on this repository's Releases page.
 
-- Users who obtained the extracted (zero-install) build need Windows 10/11 plus the **.NET 10 Desktop Runtime (x64)**; add the folder to `PATH` and `dp` is ready.
-- Once the MSI is published, this section is updated with standard steps (Release → download → install → verify).
+### Requirements
 
-> To try the full command set before public release, contact the maintainer for the current internal build.
+| Item | Requirement |
+| --- | --- |
+| OS | Windows 10 2004+ / Windows 11 (x64) |
+| Runtime | [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0) (x64) |
+
+> It must be the **Desktop** runtime — TDA's core library depends on WinForms, so the base runtime is not enough. Pick the x64 build under "Desktop apps" on the download page. The installer checks for it up front and points you to the download if it is missing.
+
+### Install steps
+
+1. Open the [release page](https://gitcode.com/GeminiDraig/tda-learn/releases/dp-v2.1.5) (current version: dp v2.1.5) and download the MSI.
+2. Double-click it and follow the wizard (administrator rights required).
+3. **Open a new terminal** (PATH is only refreshed for new processes) and verify:
+
+```powershell
+dp show version      # prints dp and TDA framework versions
+```
+
+After installation:
+
+- Install folder: `C:\Program Files\TDA\CLI`, already added to your user PATH, so `dp` works from any terminal.
+- A "dp (TDA CLI)" shortcut is created in the Start menu.
+
+### Upgrade / uninstall
+
+- **Upgrade**: just install a higher-version MSI; the previous version is replaced automatically. Installing an older version is blocked — to roll back, uninstall first, then install the older MSI.
+- **Uninstall**: Settings → Apps (or Control Panel → Programs and Features).
+
+> No need to stop the background process before upgrading — the installer handles it.
+
+### Post-install check
+
+```powershell
+dp show version                          # version info
+dp export info "D:\data\demo_lot.stdf"   # run one real data command
+```
+
+> The first data command starts the background daemon and loads the file, so it is noticeably slower — see "Quick start" below.
+
+### If it does not work
+
+| Symptom | Cause / fix |
+| --- | --- |
+| `dp` is not recognized | The terminal was not reopened, so PATH is stale — open a new one |
+| Installer blocks with a missing-runtime message | Install the .NET 10 **Desktop** Runtime (x64), then rerun the installer |
+| Runtime errors about .NET / `hostfxr.dll` | The base runtime was installed instead of the Desktop runtime |
+| SmartScreen says "Windows protected your PC" | The package is not code-signed yet; click "More info" → "Run anyway" |
 
 ## Quick start (30 seconds)
 
@@ -115,7 +159,7 @@ Not implemented — do not expect them: `dp plot tmap` / `dp plot wmap`.
 
 | File | Contents |
 | --- | --- |
-| `README.md` (Chinese) | Positioning, how to get dp, quick start, scenario entry points |
+| `README.md` (Chinese) | Positioning, installation, quick start, scenario entry points |
 | [README.en.md](README.en.md) (this file) | English version of the above |
 | [commands.md](commands.md) | Per-command reference: syntax / options / inputs and outputs / output columns and samples |
 | [ai-guide.md](ai-guide.md) | Integration guide for AI / scripts: command selection, output-size tiers, exit codes, failure modes |

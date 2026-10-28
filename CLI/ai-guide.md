@@ -88,7 +88,7 @@ PowerShell 中检查：命令后执行 `echo $LASTEXITCODE`（或 `if ($LASTEXIT
 | 某次命令异常地慢 / `daemon status` 显示 `Daemon is not running.` | Daemon 进程被意外结束（外部 kill / 异常退出），缓存加速失效 | `dp daemon restart` 重新拉起，恢复常驻缓存 |
 | 终端出现 falling back to standalone | Daemon 未就绪自动降级 | 结果仍正确；重跑一次即可享受缓存 |
 | 结果文件没找到 | 忘带 `-o`，写到源文件旁 | 按默认命名规则查找（`<源名>.<子命令>.csv`） |
-| `dp` 不是内部或外部命令 | 未安装 / PATH 未配置 | 见 README 获取章节 |
+| `dp` 不是内部或外部命令 | 未安装，或安装后终端未重开 | 见 README 安装章节；装完需重开终端 |
 
 ## 7. 推荐的 AI 工作流模板
 

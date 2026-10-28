@@ -29,7 +29,7 @@ tda-learn/
 
 [dp](CLI/README.md) 是 TDA 的命令行接口，面向 AI / 工程师**零代码**使用 DataPrism：`dp export lsum test.stdf` 一行即可输出良率。文档位于 [CLI/](CLI/)，含 [逐命令参考](CLI/commands.md) 与 [AI 集成指南](CLI/ai-guide.md)（输出规模分层 / 退出码 / 最佳实践）。
 
-> dp 目前为内部版本；公开安装包（MSI）规划中，将发布在本仓库 Release 页面，发布后本节会更新安装说明。
+**安装**：从本仓库 [Release 页面](https://gitcode.com/GeminiDraig/tda-learn/releases/dp-v2.1.5) 下载 MSI 安装包（当前版本 dp v2.1.5），双击安装即可，安装程序会自动把 `dp` 加入 PATH。要求 Windows 10 2004+ / Windows 11 与 [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0)（x64），完整步骤见 [CLI/README.md](CLI/README.md)。
 
 ## Examples 快速开始
 
