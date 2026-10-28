@@ -4,7 +4,7 @@
 
 .DESCRIPTION
     Inside the private TDA repo, Examples/*.csproj reference Src projects via
-    ProjectReference. In the public tda-examples repo they must reference the
+    ProjectReference. In the public tda-learn repo they must reference the
     same-named packages published on nuget.org instead.
     This script rewrites Examples/**/*.csproj in place. It is idempotent:
     already-converted projects are skipped.
@@ -19,7 +19,7 @@ param(
     [string]$Version = '2.1.1'
 )
 
-$repoRoot = Split-Path -Parent $PSScriptRoot          # ...\tda-examples
+$repoRoot = Split-Path -Parent $PSScriptRoot          # ...\tda-learn
 $examplesDir = Join-Path $repoRoot 'Examples'
 if (-not (Test-Path $examplesDir)) { throw "Examples directory not found: $examplesDir" }
 

@@ -77,7 +77,7 @@ dotnet run --project Examples/Ex701.LotYieldReport -- --demo   # 无需真实数
 ## 给维护者的同步提示
 
 - 同步方向唯一：TDA（私有）→ tda-learn（公开）。每次同步对应一次 TDA NuGet 发布。
-- **两个脚本分管两类镜像，互不重叠**：`tools/tda-examples-sync.ps1` 只镜像 `Examples/`；包 README 要走 `tools/sync-package-readme.ps1` **单独跑一次**（它不会被 Examples 同步脚本带上，漏跑就会让 nuget.org 包主页与本目录说法不一致）。
+- **两个脚本分管两类镜像，互不重叠**：`TDA/Tools/tda-learn-sync.ps1`（在 TDA 私有仓，2026-10-27 由 `tda-examples-sync.ps1` 更名而来）只镜像 `Examples/`；包 README 要走 `tools/sync-package-readme.ps1` **单独跑一次**（它不会被 Examples 同步脚本带上，漏跑就会让 nuget.org 包主页与本目录说法不一致）。
 - **`packages/` 不是只在发版时才同步**：改了任一包的 README（哪怕没发新版）也要同步一次；`-WhatIfOnly` 可只看差异。
 - 同步后若发现 csproj 变为 ProjectReference 形式，重跑 `tools/convert-to-nuget-refs.ps1` 转换。
 - 本仓库 git 历史完全独立于 TDA，二者零血缘。
